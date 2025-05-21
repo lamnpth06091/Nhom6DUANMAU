@@ -10,18 +10,16 @@ import javax.swing.JFrame;
  *
  * @author ADMIN
  */
-public class WelcomeJDialog extends javax.swing.JFrame  implements WelcomeController{
+public class WelcomeJDialog extends javax.swing.JFrame implements WelcomeController {
 
     /**
      * Creates new form WelcomeJDialog
      */
-    public WelcomeJDialog() {
+    public WelcomeJDialog(JFrame frame) {
         initComponents();
     }
 
-    WelcomeJDialog(JFrame frame, boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,7 +31,6 @@ public class WelcomeJDialog extends javax.swing.JFrame  implements WelcomeContro
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         progressBar = new javax.swing.JProgressBar();
         jLabel4 = new javax.swing.JLabel();
@@ -41,8 +38,7 @@ public class WelcomeJDialog extends javax.swing.JFrame  implements WelcomeContro
         jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/trump-small.png"))); // NOI18N
+        setTitle("PolyCafe");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 153, 51));
@@ -65,7 +61,6 @@ public class WelcomeJDialog extends javax.swing.JFrame  implements WelcomeContro
                         .addGap(134, 134, 134)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel1)
                             .addComponent(jLabel4)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(57, 57, 57)
@@ -75,9 +70,7 @@ public class WelcomeJDialog extends javax.swing.JFrame  implements WelcomeContro
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
@@ -119,13 +112,12 @@ public class WelcomeJDialog extends javax.swing.JFrame  implements WelcomeContro
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new WelcomeJDialog().setVisible(true);
+                new WelcomeJDialog(frame, true).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -134,18 +126,17 @@ public class WelcomeJDialog extends javax.swing.JFrame  implements WelcomeContro
 
     @Override
     public void waiting() {
-         this.setLocationRelativeTo(null);
- new Thread(() -> {
- try {
- for (var i = 0; i <= 100; i++) {
- progressBar.setValue(i);
- Thread.sleep(10);
- }
- WelcomeJDialog.this.dispose();
- } catch (InterruptedException ex) {
- System.exit(0);
- }
- }).start();
- }
+        this.setLocationRelativeTo(null);
+        new Thread(() -> {
+            try {
+                for (var i = 0; i <= 100; i++) {
+                    progressBar.setValue(i);
+                    Thread.sleep(10);
+                }
+                WelcomeJDialog.this.dispose();
+            } catch (InterruptedException ex) {
+                System.exit(0);
+            }
+        }).start();
     }
-
+}
