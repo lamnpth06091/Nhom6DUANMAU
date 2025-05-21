@@ -10,7 +10,7 @@ import javax.swing.JFrame;
  *
  * @author ADMIN
  */
-public class WelcomeJDialog extends javax.swing.JFrame {
+public class WelcomeJDialog extends javax.swing.JFrame  implements WelcomeController{
 
     /**
      * Creates new form WelcomeJDialog
@@ -32,9 +32,13 @@ public class WelcomeJDialog extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         progressBar = new javax.swing.JProgressBar();
+        jLabel4 = new javax.swing.JLabel();
+
+        jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,6 +52,8 @@ public class WelcomeJDialog extends javax.swing.JFrame {
         progressBar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         progressBar.setForeground(new java.awt.Color(255, 153, 0));
         progressBar.setToolTipText("40%");
+
+        jLabel4.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,6 +70,10 @@ public class WelcomeJDialog extends javax.swing.JFrame {
                         .addGap(57, 57, 57)
                         .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(51, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(176, 176, 176))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,9 +82,11 @@ public class WelcomeJDialog extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addGap(44, 44, 44)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -118,7 +130,25 @@ public class WelcomeJDialog extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JProgressBar progressBar;
     // End of variables declaration//GEN-END:variables
 
-}
+    @Override
+    public void waiting() {
+         this.setLocationRelativeTo(null);
+ new Thread(() -> {
+ try {
+ for (var i = 0; i <= 100; i++) {
+ progressBar.setValue(i);
+ Thread.sleep(10);
+ }
+ WelcomeJDialog.this.dispose();
+ } catch (InterruptedException ex) {
+ System.exit(0);
+ }
+ }).start();
+ }
+    }
+
