@@ -1,25 +1,22 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package poly.cafe.ui;
-
-import javax.swing.JFrame;
 
 /**
  *
  * @author ADMIN
  */
-public class WelcomeJDialog extends javax.swing.JFrame implements WelcomeController {
+public class WelcomeJDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form WelcomeJDialog
      */
-    public WelcomeJDialog(JFrame frame) {
+    public WelcomeJDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
-
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,53 +27,52 @@ public class WelcomeJDialog extends javax.swing.JFrame implements WelcomeControl
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        progressBar = new javax.swing.JProgressBar();
-        jLabel4 = new javax.swing.JLabel();
+        jProgressBar1 = new javax.swing.JProgressBar();
 
-        jLabel3.setText("jLabel3");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Dang nhap");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("PolyCafe");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/trump-small.png"))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 153, 51));
-        jLabel2.setText("POLY CAFE");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 102, 0));
+        jLabel2.setText("Poly Cafe");
 
-        progressBar.setBackground(new java.awt.Color(255, 255, 255));
-        progressBar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        progressBar.setForeground(new java.awt.Color(255, 153, 0));
-        progressBar.setToolTipText("40%");
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/trump-small.png"))); // NOI18N
+        jProgressBar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jProgressBar1.setForeground(new java.awt.Color(255, 102, 0));
+        jProgressBar1.setToolTipText("");
+        jProgressBar1.setValue(0);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(148, 148, 148))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)))
+                        .addGap(63, 63, 63)
+                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addGap(149, 149, 149)
+                        .addComponent(jLabel2)))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addComponent(jLabel2)
+                .addGap(12, 12, 12)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105))
         );
 
         pack();
@@ -109,34 +105,24 @@ public class WelcomeJDialog extends javax.swing.JFrame implements WelcomeControl
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new WelcomeJDialog(frame, true).setVisible(true);
+                WelcomeJDialog dialog = new WelcomeJDialog(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JProgressBar progressBar;
+    private javax.swing.JProgressBar jProgressBar1;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void waiting() {
-        this.setLocationRelativeTo(null);
-        new Thread(() -> {
-            try {
-                for (var i = 0; i <= 100; i++) {
-                    progressBar.setValue(i);
-                    Thread.sleep(10);
-                }
-                WelcomeJDialog.this.dispose();
-            } catch (InterruptedException ex) {
-                System.exit(0);
-            }
-        }).start();
-    }
 }

@@ -9,5 +9,6 @@ package poly.cafe.entity;
  * @author ADMIN
  */
 public class Category {
-    
+     private String id;
+ private String name; 
 }

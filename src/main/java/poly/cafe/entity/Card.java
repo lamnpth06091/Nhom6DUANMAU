@@ -9,5 +9,6 @@ package poly.cafe.entity;
  * @author ADMIN
  */
 public class Card {
-    
-}
+   private Integer id;
+ private int status;  
+} 

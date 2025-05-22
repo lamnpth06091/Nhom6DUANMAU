@@ -4,10 +4,21 @@
  */
 package poly.cafe.entity;
 
+import java.util.Date;
+import lombok.Builder;
+
 /**
  *
  * @author ADMIN
  */
 public class Bill {
-    
+private Long id;
+ private String username;
+ private Integer cardId;
+ @Builder.Default
+ private Date checkin = new Date();
+ private Date checkout;
+ private int status;
 }
+
+
