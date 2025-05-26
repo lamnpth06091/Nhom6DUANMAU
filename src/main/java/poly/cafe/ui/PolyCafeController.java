@@ -6,6 +6,12 @@ package poly.cafe.ui;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import poly.cafe.ui.manager.BillManagerJDialog;
+import poly.cafe.ui.manager.CardManagerJDialog;
+import poly.cafe.ui.manager.CategoryManagerJDialog;
+import poly.cafe.ui.manager.DrinkManagerJDialog;
+import poly.cafe.ui.manager.RevenueManagerJDialog;
+import poly.cafe.ui.manager.UserManagerJDialog;
 import poly.cafe.util.XDialog;
 
 /**
@@ -13,8 +19,7 @@ import poly.cafe.util.XDialog;
  * @author ADMIN
  */
 public interface PolyCafeController {
-
-    void init();
+     void init();
 
     default void exit() {
         if (XDialog.confirm("Bạn muốn kết thúc?")) {
@@ -28,7 +33,7 @@ public interface PolyCafeController {
     }
 
     default void showWelcomeJDialog(JFrame frame) {
-        this.showJDialog(new WelcomeJDialog(frame,true));
+        this.showJDialog(new WelcomeJDialog(frame, true));
     }
 
     default void showLoginJDialog(JFrame frame) {

@@ -27,17 +27,87 @@ public class UserManagerJDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblPhoto = new javax.swing.JLabel();
+        lblFullname = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        btnSales = new javax.swing.JButton();
+        btnHistory = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
+        btnChangePassword = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        lblPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/trump-small.png"))); // NOI18N
+
+        lblFullname.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblFullname.setForeground(new java.awt.Color(255, 102, 0));
+        lblFullname.setText("Nguyễn Văn USER2");
+
+        btnSales.setText("Bán Hàng");
+
+        btnHistory.setText("Lịch sử");
+
+        btnExit.setText("Kết thúc");
+
+        btnChangePassword.setText("Đổi mật khẩu");
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/coffee-shop.jpg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblPhoto)
+                                .addGap(26, 26, 26))
+                            .addComponent(lblFullname))
+                        .addGap(61, 61, 61))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnChangePassword)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnExit))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnSales)
+                                        .addGap(33, 33, 33)
+                                        .addComponent(btnHistory)))))
+                        .addGap(52, 52, 52)))
+                .addComponent(jLabel3)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(lblPhoto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblFullname)
+                        .addGap(29, 29, 29)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSales)
+                            .addComponent(btnHistory))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnChangePassword)
+                            .addComponent(btnExit)))
+                    .addComponent(jLabel3))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -86,5 +156,13 @@ public class UserManagerJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChangePassword;
+    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnHistory;
+    private javax.swing.JButton btnSales;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblFullname;
+    private javax.swing.JLabel lblPhoto;
     // End of variables declaration//GEN-END:variables
 }

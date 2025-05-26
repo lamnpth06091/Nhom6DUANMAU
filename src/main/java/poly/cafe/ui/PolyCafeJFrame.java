@@ -1,19 +1,16 @@
+package poly.cafe.ui;
+
+import poly.cafe.util.XIcon;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package poly.cafe.ui;
-
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import poly.cafe.util.XIcon;
-
 /**
  *
  * @author ADMIN
  */
-public class PolyCafeJFrame extends javax.swing.JFrame implements
-PolyCafeController {
+public class PolyCafeJFrame extends javax.swing.JFrame implements PolyCafeController {
 
     /**
      * Creates new form PolyCafeJFrame
@@ -187,8 +184,7 @@ PolyCafeController {
     }//GEN-LAST:event_btnUserManagerActionPerformed
 
     private void btnHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoryActionPerformed
-        // TODO add your handling code here:// TODO add your handling code here:
- this.showHistoryJDialog(this); // được gọi khi click vào nút btnHistory
+        this.showHistoryJDialog(this);
     }//GEN-LAST:event_btnHistoryActionPerformed
 
     /**
@@ -244,74 +240,13 @@ PolyCafeController {
 
     @Override
     public void init() {
- this.setIconImage(XIcon.getIcon("trump-small.png").getImage());
+        this.setIconImage(XIcon.getIcon("trump-small.png").getImage());
  this.setLocationRelativeTo(null);
  this.showWelcomeJDialog(this);
  this.showLoginJDialog(this);
     }
-
-    @Override
-    public void exit() {
-        PolyCafeController.super.exit(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
-
-    @Override
-    public void showJDialog(JDialog dialog) {
-        PolyCafeController.super.showJDialog(dialog); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
-
-    @Override
-    public void showWelcomeJDialog(JFrame frame) {
-        PolyCafeController.super.showWelcomeJDialog(frame); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
-
-    @Override
-    public void showLoginJDialog(JFrame frame) {
-        PolyCafeController.super.showLoginJDialog(frame); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
-
-    @Override
-    public void showChangePasswordJDialog(JFrame frame) {
-        PolyCafeController.super.showChangePasswordJDialog(frame); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
-
-    @Override
-    public void showSalesJDialog(JFrame frame) {
-        PolyCafeController.super.showSalesJDialog(frame); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
-
-    @Override
-    public void showHistoryJDialog(JFrame frame) {
-        PolyCafeController.super.showHistoryJDialog(frame); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
-
-    @Override
-    public void showDrinkManagerJDialog(JFrame frame) {
-        PolyCafeController.super.showDrinkManagerJDialog(frame); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
-
-    @Override
-    public void showCategoryManagerJDialog(JFrame frame) {
-        PolyCafeController.super.showCategoryManagerJDialog(frame); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
-
-    @Override
-    public void showCardManagerJDialog(JFrame frame) {
-        PolyCafeController.super.showCardManagerJDialog(frame); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
-
-    @Override
-    public void showBillManagerJDialog(JFrame frame) {
-        PolyCafeController.super.showBillManagerJDialog(frame); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
-
-    @Override
-    public void showUserManagerJDialog(JFrame frame) {
-        PolyCafeController.super.showUserManagerJDialog(frame); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
-
-    @Override
-    public void showRevenueManagerJDialog(JFrame frame) {
-        PolyCafeController.super.showRevenueManagerJDialog(frame); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
+  
+    
 }
+
+
