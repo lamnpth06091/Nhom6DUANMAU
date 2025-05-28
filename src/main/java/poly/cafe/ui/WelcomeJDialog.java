@@ -33,6 +33,11 @@ public class WelcomeJDialog extends javax.swing.JDialog implements WelcomeContro
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Dang nhap");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/trump-small.png"))); // NOI18N
 
@@ -43,6 +48,7 @@ public class WelcomeJDialog extends javax.swing.JDialog implements WelcomeContro
         progressBar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         progressBar.setForeground(new java.awt.Color(255, 102, 0));
         progressBar.setToolTipText("");
+        progressBar.setAutoscrolls(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,6 +82,11 @@ public class WelcomeJDialog extends javax.swing.JDialog implements WelcomeContro
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+    this.waiting();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -140,5 +151,5 @@ public class WelcomeJDialog extends javax.swing.JDialog implements WelcomeContro
  }
  }).start();
  }
-    }
+  }
 

@@ -4,10 +4,15 @@
  */
 package poly.cafe.entity;
 
+import lombok.NoArgsConstructor;
+
 /**
  *
  * @author ADMIN
  */
+@NoArgsConstructor
+
+
 public class BillDetail {
  private Long id;
  private Long billId;

@@ -4,6 +4,7 @@
  */
 package poly.cafe.dao.impl;
 
+import poly.cafe.dao.CategoryDAO;
 import java.util.List;
 import poly.cafe.entity.Category;
 import poly.cafe.util.XJdbc;
