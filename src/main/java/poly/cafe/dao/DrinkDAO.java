@@ -4,12 +4,13 @@
  */
 package poly.cafe.dao;
 
-import poly.cafe.entity.Category;
+import java.util.List;
+import poly.cafe.entity.Drink;
 
 /**
  *
  * @author ADMIN
  */
-public interface CategoryDAO extends CrudDAO<Category, String>{
-    
+public interface DrinkDAO extends CrudDAO<Drink, String>{
+    List<Drink> findByCategoryId(String categoryId);
 }

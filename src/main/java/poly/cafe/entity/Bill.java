@@ -5,12 +5,19 @@
 package poly.cafe.entity;
 
 import java.util.Date;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.Data;
 
 /**
  *
  * @author ADMIN
  */
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Data
 public class Bill {
 private Long id;
  private String username;

@@ -47,7 +47,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 
     @Override
     public List<Category> findAll() {
- return XQuery.getEntityList(Category.class, findAllSql);
+ return XQuery.getBeanList(Category.class, findAllSql);
 
     }
 

@@ -4,12 +4,12 @@
  */
 package poly.cafe.dao;
 
-import poly.cafe.entity.Category;
+import poly.cafe.entity.Card;
 
 /**
  *
  * @author ADMIN
  */
-public interface CategoryDAO extends CrudDAO<Category, String>{
+public interface CardDAO extends CrudDAO<Card, Integer> {
     
 }

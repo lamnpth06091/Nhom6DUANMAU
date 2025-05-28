@@ -1,14 +1,21 @@
+package poly.cafe.ui;
+
+import poly.cafe.dao.UserDAO;
+import poly.cafe.dao.impl.UserDAOImpl;
+import poly.cafe.util.XAuth;
+import poly.cafe.util.XDialog;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package poly.cafe.ui;
+
 
 /**
  *
  * @author ADMIN
  */
-public class ChangePasswordJDialog extends javax.swing.JDialog {
+public class ChangePasswordJDialog extends javax.swing.JDialog implements ChangePasswordController  {
 
     /**
      * Creates new form ChangePasswordJDialog
@@ -29,13 +36,13 @@ public class ChangePasswordJDialog extends javax.swing.JDialog {
 
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel2 = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        txtNewpass = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        txtConfirm = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -46,7 +53,7 @@ public class ChangePasswordJDialog extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Đổi mật khẩu");
 
-        jLabel2.setText("Tên đăng nhập");
+        txtUsername.setText("Tên đăng nhập");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,11 +61,11 @@ public class ChangePasswordJDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel3.setText("Mật khẩu hiện tại");
+        txtPassword.setText("Mật khẩu hiện tại");
 
-        jLabel4.setText("Mật khẩu mới");
+        txtNewpass.setText("Mật khẩu mới");
 
-        jLabel5.setText("Xác nhận mật khẩu mới");
+        txtConfirm.setText("Xác nhận mật khẩu mới");
 
         jButton1.setText("Lưu");
 
@@ -79,9 +86,9 @@ public class ChangePasswordJDialog extends javax.swing.JDialog {
                     .addGap(23, 23, 23)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
+                            .addComponent(txtUsername)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3)
+                            .addComponent(txtPassword)
                             .addGap(123, 123, 123))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,9 +103,9 @@ public class ChangePasswordJDialog extends javax.swing.JDialog {
                             .addGap(0, 0, Short.MAX_VALUE)))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(jLabel4)
+                .addComponent(txtNewpass)
                 .addGap(213, 213, 213)
-                .addComponent(jLabel5))
+                .addComponent(txtConfirm))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
@@ -115,16 +122,16 @@ public class ChangePasswordJDialog extends javax.swing.JDialog {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(txtUsername)
+                    .addComponent(txtPassword))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(txtNewpass)
+                    .addComponent(txtConfirm))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,14 +196,45 @@ public class ChangePasswordJDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel txtConfirm;
+    private javax.swing.JLabel txtNewpass;
+    private javax.swing.JLabel txtPassword;
+    private javax.swing.JLabel txtUsername;
     // End of variables declaration//GEN-END:variables
+
+UserDAO dao = new UserDAOImpl();
+@Override
+ public void open() {
+ this.setLocationRelativeTo(null);
+}
+
+ @Override
+public void save() {
+ String username = txtUsername.getText();
+ String password = txtPassword.getText();
+ String newpass = txtNewpass.getText();
+ String confirm = txtConfirm.getText();
+ if (!newpass.equals(confirm)) {
+ XDialog.alert("Xác nhận mật khẩu không đúng!");
+ } else if (!username.equals(XAuth.user.getUsername())) {
+ XDialog.alert("Sai tên đăng nhập!");
+ } else if (!password.equals(XAuth.user.getPassword())) {
+ XDialog.alert("Sai mật khẩu!");
+ } else {
+ XAuth.user.setPassword(newpass);
+ dao.update(XAuth.user);
+ XDialog.alert("Đổi mật khẩu thành công!");
+ }
+}
+
+
+   @Override
+public void close() {
+ this.dispose();
+}
 }

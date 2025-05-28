@@ -4,7 +4,6 @@
  */
 package poly.cafe.dao;
 
-import poly.cafe.dao.impl.CrudDAO;
 import poly.cafe.entity.User;
 
 /**
