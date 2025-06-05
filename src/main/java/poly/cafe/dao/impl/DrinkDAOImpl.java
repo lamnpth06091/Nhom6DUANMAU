@@ -27,7 +27,7 @@ public class DrinkDAOImpl implements DrinkDAO {
         Object[] values = {
             entity.getId(), entity.getName(), entity.getUnitPrice(),
             entity.getDiscount(), entity.getImage(), entity.isAvailable(),
-            entity.getCategoryId()
+            entity.getCategoryid()
         };
         XJdbc.executeUpdate(createSql, values);
         return entity;
@@ -37,7 +37,7 @@ public class DrinkDAOImpl implements DrinkDAO {
     public void update(Drink entity) {
         Object[] values = {
             entity.getName(), entity.getUnitPrice(), entity.getDiscount(),
-            entity.getImage(), entity.isAvailable(), entity.getCategoryId(),
+            entity.getImage(), entity.isAvailable(), entity.getCategoryid(),
             entity.getId()
         };
         XJdbc.executeUpdate(updateSql, values);

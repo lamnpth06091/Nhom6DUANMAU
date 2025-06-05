@@ -153,16 +153,25 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Chon tat ca"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCheckAllActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnUncheckAll">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Bo chon tat ca"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUncheckAllActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnDeleteCheckedItems">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Xoa cac muc chon"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteCheckedItemsActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -80,10 +80,25 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
         jScrollPane1.setViewportView(tblCards);
 
         btnCheckAll.setText("Chon tat ca");
+        btnCheckAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckAllActionPerformed(evt);
+            }
+        });
 
         btnUncheckAll.setText("Bo chon tat ca");
+        btnUncheckAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUncheckAllActionPerformed(evt);
+            }
+        });
 
         btnDeleteCheckedItems.setText("Xoa cac muc chon");
+        btnDeleteCheckedItems.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteCheckedItemsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -248,6 +263,21 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMoveLastActionPerformed
 
+    private void btnCheckAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckAllActionPerformed
+        // TODO add your handling code here:
+         this.checkAll();
+    }//GEN-LAST:event_btnCheckAllActionPerformed
+
+    private void btnUncheckAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUncheckAllActionPerformed
+        // TODO add your handling code here:
+           this.uncheckAll();
+    }//GEN-LAST:event_btnUncheckAllActionPerformed
+
+    private void btnDeleteCheckedItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCheckedItemsActionPerformed
+        // TODO add your handling code here:
+        this.deleteCheckedItems();
+    }//GEN-LAST:event_btnDeleteCheckedItemsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -318,51 +348,51 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
     private javax.swing.JTable tblCards;
     private javax.swing.JLabel txtId;
     // End of variables declaration//GEN-END:variables
-CardDAO dao = new CardDAOImpl();
-List<Card> items = List.of();
+  CardDAO dao = new CardDAOImpl();
+    List<Card> items = List.of();
     @Override
     public void open() {
- this.setLocationRelativeTo(null);
- this.fillToTable();
- this.clear();
-    }
+        this.setLocationRelativeTo(null);
+        this.fillToTable();
+        this.clear();
+        }
     
 @Override
-public void setForm(Card entity) {
-}
-    
-
-    @Override
+    public void setForm(Card entity) {
+    }
 
 
+        @Override
 
-public Card getForm() {
-        return null;
+
+
+    public Card getForm() {
+            return null;
 }
 
   
 
     @Override
     public void fillToTable() {
-        DefaultTableModel model = (DefaultTableModel) tblCards.getModel();
- model.setRowCount(0);
- items = dao.findAll();
- items.forEach(item -> {
- Object[] rowData = {
- item.getId(),
- item.getStatus(),
- false
- };
- model.addRow(rowData);
- });
+    DefaultTableModel model = (DefaultTableModel) tblCards.getModel();
+    model.setRowCount(0);
+    items = dao.findAll();
+    items.forEach(item -> {
+    Object[] rowData = {
+    item.getId(),
+    item.getStatus(),
+    false
+    };
+    model.addRow(rowData);
+    });
     }
 
     @Override
     public void edit() {
         Card entity = items.get(tblCards.getSelectedRow());
- this.setForm(entity);
- this.setEditable(true);
- tabs.setSelectedIndex(1);
+    this.setForm(entity);
+    this.setEditable(true);
+    tabs.setSelectedIndex(1);
 }
 
     
@@ -370,16 +400,16 @@ public Card getForm() {
     @Override
     public void create() {
    Card entity = this.getForm();
- dao.create(entity);
- this.fillToTable();
- this.clear();
+    dao.create(entity);
+    this.fillToTable();
+    this.clear();
     }
 
     @Override
     public void update() {
      Card entity = this.getForm();
- dao.update(entity);
- this.fillToTable();
+    dao.update(entity);
+    this.fillToTable();
 }
     @Override
     public void delete() {
@@ -389,21 +419,21 @@ public Card getForm() {
 
     @Override
     public void clear() {
- this.setForm(new Card());
- this.setEditable(false);
+    this.setForm(new Card());
+    this.setEditable(false);
     }
 
     @Override
     public void setEditable(boolean editable) {
-       txtId.setEnabled(!editable);
- btnCreate.setEnabled(!editable);
- btnUpdate.setEnabled(editable);
- btnDelete.setEnabled(editable);
- int rowCount = tblCards.getRowCount();
- btnMoveFirst.setEnabled(editable && rowCount > 0);
- btnMovePrevious.setEnabled(editable && rowCount > 0);
- btnMoveNext.setEnabled(editable && rowCount > 0);
- btnMoveLast.setEnabled(editable && rowCount> 0);
+    txtId.setEnabled(!editable);
+    btnCreate.setEnabled(!editable);
+    btnUpdate.setEnabled(editable);
+    btnDelete.setEnabled(editable);
+    int rowCount = tblCards.getRowCount();
+    btnMoveFirst.setEnabled(editable && rowCount > 0);
+    btnMovePrevious.setEnabled(editable && rowCount > 0);
+    btnMoveNext.setEnabled(editable && rowCount > 0);
+    btnMoveLast.setEnabled(editable && rowCount> 0);
     }
 
     @Override
@@ -456,6 +486,4 @@ private void setCheckedAll(boolean checked) {
     }
 
     @Override
-    public void moveTo(int rowIndex) {
-   
-}
+    public void moveTo(int rowIndex) {}}

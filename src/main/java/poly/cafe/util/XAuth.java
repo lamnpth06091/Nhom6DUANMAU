@@ -8,15 +8,15 @@ import poly.cafe.entity.User;
 
 /**
  *
- * @author ADMIN
+ * @author Admin
  */
 public class XAuth {
-    public static User user = User.builder()
- .username("user1@gmail.com")
- .password("123")
- .enabled(true)
- .manager(true)
- .fullname("Nguyễn Văn Tèo")
- .photo("trump.png")
- .build(); // biến user này sẽ được thay thế sau khi đăng nhập
+public static User user = User.builder()
+.username("Phuclam456")
+.password("123")
+.enabled(true)
+.manager(true)
+.fullname("Nguyen Phuc Lam")
+.photo("trump.png")
+.build(); // biến user này sẽ được thay thế sau khi đăng nhập
 }

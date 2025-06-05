@@ -4,14 +4,29 @@
  */
 package poly.cafe.ui.manager;
 
+import java.io.File;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
+import javax.swing.table.DefaultTableModel;
+import poly.cafe.dao.CategoryDAO;
+import poly.cafe.dao.DrinkDAO;
+import poly.cafe.dao.impl.CategoryDAOImpl;
+import poly.cafe.dao.impl.DrinkDAOImpl;
+import poly.cafe.entity.Category;
+import poly.cafe.entity.Drink;
+import poly.cafe.ui.DrinkJDialog;
+import poly.cafe.util.XDialog;
+import poly.cafe.util.XIcon;
+
 /**
  *
  * @author ADMIN
  */
-public class DrinkManagerJDialog extends javax.swing.JDialog {
+public class DrinkManagerJDialog extends javax.swing.JDialog implements DrinkController{
 
     /**
-     * Creates new form DrinkManagerJDialog
+     * Creates new form DrinkJDialog
      */
     public DrinkManagerJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -27,21 +42,327 @@ public class DrinkManagerJDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
+        tabs = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblDrinks = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblCategories = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        lblImage = new javax.swing.JLabel();
+        afsa = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
+        txtUnitPrice = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        sldDiscount = new javax.swing.JSlider();
+        jLabel6 = new javax.swing.JLabel();
+        cboCategories = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        rdoAvailable = new javax.swing.JRadioButton();
+        rdoUnavailable = new javax.swing.JRadioButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        btnMoveFirst = new javax.swing.JButton();
+        btnMovePrevious = new javax.swing.JButton();
+        btnMoveNext = new javax.swing.JButton();
+        btnMoveLast = new javax.swing.JButton();
+        btnCreate = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+
+        jCheckBox1.setText("jCheckBox1");
+
+        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(jList2);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        tblDrinks.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Ma do uong", "Ten do uong", "Don gia", "Giam gia", "Trang thai", ""
+            }
+        ));
+        jScrollPane1.setViewportView(tblDrinks);
+
+        jButton1.setText("Xoa cac muc chon");
+
+        jButton2.setText("Bo chon tat ca");
+
+        jButton3.setText("Chon tat ca");
+
+        tblCategories.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Loai do uong"
+            }
+        ));
+        jScrollPane4.setViewportView(tblCategories);
+        if (tblCategories.getColumnModel().getColumnCount() > 0) {
+            tblCategories.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 749, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(131, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addGap(360, 360, 360))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(58, 58, 58)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addGap(29, 29, 29)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+
+        tabs.addTab("Danh sach", jPanel1);
+
+        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/trump-small.png"))); // NOI18N
+
+        afsa.setText("Ma do uong");
+
+        txtUnitPrice.setText("0.0");
+
+        jLabel3.setText("Don gia");
+
+        jLabel4.setText("Ten do uong");
+
+        jLabel5.setText("Giam gia");
+
+        sldDiscount.setValue(0);
+
+        jLabel6.setText("Loai");
+
+        cboCategories.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soda", "nuoc trai cay" }));
+
+        jLabel7.setText("Trang thai");
+
+        rdoAvailable.setText("San co");
+
+        rdoUnavailable.setText("het hang");
+
+        btnMoveFirst.setText("|<");
+        btnMoveFirst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoveFirstActionPerformed(evt);
+            }
+        });
+
+        btnMovePrevious.setText("<<");
+
+        btnMoveNext.setText(">>");
+
+        btnMoveLast.setText(">|");
+
+        btnCreate.setText("Tao moi");
+
+        btnUpdate.setText("Cap nhat");
+
+        btnDelete.setText("Xoa");
+
+        jButton11.setText("Nhap moi");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(txtUnitPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(51, 51, 51)
+                                        .addComponent(sldDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                                .addComponent(cboCategories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(202, 202, 202)
+                                                .addComponent(rdoAvailable))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(19, 19, 19)
+                                                .addComponent(jLabel6)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel7)))
+                                        .addGap(39, 39, 39)
+                                        .addComponent(rdoUnavailable))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jLabel3)
+                                .addGap(181, 181, 181)
+                                .addComponent(jLabel5))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(afsa)
+                                .addGap(195, 195, 195)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4)))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(btnCreate)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUpdate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDelete)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton11)
+                        .addGap(86, 86, 86)
+                        .addComponent(btnMoveFirst)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnMovePrevious)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnMoveNext)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnMoveLast))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(386, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(afsa)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(68, 68, 68)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtUnitPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sldDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(65, 65, 65)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)))
+                    .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboCategories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rdoAvailable)
+                    .addComponent(rdoUnavailable))
+                .addGap(42, 42, 42)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMoveFirst)
+                    .addComponent(btnMovePrevious)
+                    .addComponent(btnMoveNext)
+                    .addComponent(btnMoveLast)
+                    .addComponent(btnCreate)
+                    .addComponent(btnUpdate)
+                    .addComponent(btnDelete)
+                    .addComponent(jButton11))
+                .addContainerGap(209, Short.MAX_VALUE))
+        );
+
+        tabs.addTab("Bieu mau", jPanel2);
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jList1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(tabs)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnMoveFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveFirstActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMoveFirstActionPerformed
 
     /**
      * @param args the command line arguments
@@ -60,20 +381,20 @@ public class DrinkManagerJDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DrinkManagerJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DrinkJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DrinkManagerJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DrinkJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DrinkManagerJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DrinkJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DrinkManagerJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DrinkJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DrinkManagerJDialog dialog = new DrinkManagerJDialog(new javax.swing.JFrame(), true);
+                DrinkJDialog dialog = new DrinkJDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -86,5 +407,225 @@ public class DrinkManagerJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel afsa;
+    private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnMoveFirst;
+    private javax.swing.JButton btnMoveLast;
+    private javax.swing.JButton btnMoveNext;
+    private javax.swing.JButton btnMovePrevious;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cboCategories;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblImage;
+    private javax.swing.JRadioButton rdoAvailable;
+    private javax.swing.JRadioButton rdoUnavailable;
+    private javax.swing.JSlider sldDiscount;
+    private javax.swing.JTabbedPane tabs;
+    private javax.swing.JTable tblCategories;
+    private javax.swing.JTable tblDrinks;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtUnitPrice;
     // End of variables declaration//GEN-END:variables
+DrinkDAO dao = new DrinkDAOImpl();
+        List<Drink> items= List.of(); // đồ uống
+        List<Category> categories = List.of();
+        private final JFileChooser fileChooser = new JFileChooser();
+    @Override
+        public void fillCategories() {
+        DefaultComboBoxModel cboModel = (DefaultComboBoxModel) cboCategories.getModel();
+        cboModel.removeAllElements();
+
+        DefaultTableModel tblModel = (DefaultTableModel) tblCategories.getModel();
+        tblModel.setRowCount(0);
+
+        CategoryDAO cdao = new CategoryDAOImpl();
+        categories = cdao.findAll();
+
+        categories.forEach(category -> {
+            cboModel.addElement(category);
+            tblModel.addRow(new Object[]{category.getName()});
+        });
+
+        tblCategories.setRowSelectionInterval(0, 0);
+    }
+
+    @Override
+    public void open() {
+    this.setLocationRelativeTo(null);
+    this.fillCategories();
+    this.fillToTable();
+    this.clear();
+    }
+    @Override
+    public void chooseFile() {
+    if(fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
+        File selectedFile = fileChooser.getSelectedFile();
+        File file = XIcon.copyTo(selectedFile, "images");
+        lblImage.setToolTipText(file.getName());
+        XIcon.setIcon(lblImage, file);
+    }
+}
+
+    @Override
+    public void fillToTable() {
+    DefaultTableModel model = (DefaultTableModel) tblDrinks.getModel();
+    model.setRowCount(0);
+
+    Category category = categories.get(tblCategories.getSelectedRow());
+    items = dao.findByCategoryId(category.getId());
+
+    items.forEach(item -> {
+        Object[] rowData = {
+            item.getId(),
+            item.getName(),
+            item.getUnitPrice(),
+            item.getImage()
+        };
+        model.addRow(rowData);
+    });
+
+    this.clear(); // nếu có
+}
+    @Override
+public void setForm(Drink entity) {
+
+}
+
+@Override
+public Drink getForm() {
+
+        return null;
+
+}
+
+@Override
+public void create() {
+    Drink entity = this.getForm();
+    dao.create(entity);
+    this.fillToTable();
+    this.clear();
+}
+
+@Override
+public void update() {
+    Drink entity = this.getForm();
+    dao.update(entity);
+    this.fillToTable();
+}
+
+@Override
+public void delete() {
+    if (XDialog.confirm("Bạn thực sự muốn xóa?")) {
+        String id = txtId.getText();
+        dao.deleteById(id);
+        this.fillToTable();
+        this.clear();
+    }
+}
+
+@Override
+public void clear() {
+    this.setForm(new Drink());
+    this.setEditable(false);
+}
+
+public void edit() {
+    int index = tblDrinks.getSelectedRow();
+    if (index >= 0 && index < items.size()) {
+        Drink entity = items.get(index);
+        this.setForm(entity);
+        this.setEditable(true);
+        tabs.setSelectedIndex(1);
+    }
+}
+
+
+@Override
+public void setEditable(boolean editable) {
+    txtId.setEnabled(!editable);
+    btnCreate.setEnabled(!editable);
+    btnUpdate.setEnabled(editable);
+    btnDelete.setEnabled(editable);
+    int rowCount = tblDrinks.getRowCount();
+    btnMoveFirst.setEnabled(editable && rowCount > 0);
+    btnMovePrevious.setEnabled(editable && rowCount > 0);
+    btnMoveNext.setEnabled(editable && rowCount > 0);
+    btnMoveLast.setEnabled(editable && rowCount > 0);
+}
+@Override
+public void checkAll() {
+        this.setCheckedAll(true);
+    }
+@Override
+    public void uncheckAll() {
+        this.setCheckedAll(false);
+    }
+
+    private void setCheckedAll(boolean checked) {
+        for (int i = 0; i < tblDrinks.getRowCount(); i++) {
+            tblDrinks.setValueAt(checked, i, 4); // cột checkbox là cột thứ 4 (index 4)
+        }
+    }
+@Override
+    public void deleteCheckedItems() {
+        if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
+            for (int i = 0; i < tblDrinks.getRowCount(); i++) {
+                Boolean checked = (Boolean) tblDrinks.getValueAt(i, 4);
+                if (checked != null && checked) {
+                    dao.deleteById(items.get(i).getId());
+                }
+            }
+            this.fillToTable();
+            this.clear();
+        }
+    }
+@Override
+    public void moveFirst() {
+        this.moveTo(0);
+    }
+@Override
+    public void movePrevious() {
+        this.moveTo(tblDrinks.getSelectedRow() - 1);
+    }
+@Override
+    public void moveNext() {
+        this.moveTo(tblDrinks.getSelectedRow() + 1);
+    }
+@Override
+    public void moveLast() {
+        this.moveTo(tblDrinks.getRowCount() - 1);
+    }
+@Override
+    public void moveTo(int index) {
+        if (index < 0) {
+            this.moveLast();
+        } else if (index >= tblDrinks.getRowCount()) {
+            this.moveFirst();
+        } else {
+            tblDrinks.clearSelection();
+            tblDrinks.setRowSelectionInterval(index, index);
+            this.edit();
+        }
+    }
 }
