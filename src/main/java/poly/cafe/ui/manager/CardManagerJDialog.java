@@ -36,7 +36,6 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        jRadioButton4 = new javax.swing.JRadioButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
         tabs = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -46,11 +45,11 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
         btnUncheckAll = new javax.swing.JButton();
         btnDeleteCheckedItems = new javax.swing.JButton();
         rdError = new javax.swing.JPanel();
-        txtId = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        label1 = new javax.swing.JLabel();
+        txtCardID = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         rdOperating = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rderror = new javax.swing.JRadioButton();
         rdLose = new javax.swing.JRadioButton();
         btnCreate = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
@@ -61,8 +60,6 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
         btnMoveNext = new javax.swing.JButton();
         btnMoveLast = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-
-        jRadioButton4.setText("jRadioButton4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -131,15 +128,16 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
 
         tabs.addTab("Danh sach", jPanel1);
 
-        txtId.setText("Ma the");
+        label1.setText("Ma the");
 
         jLabel2.setText("Trang thai");
 
         buttonGroup1.add(rdOperating);
         rdOperating.setText("Operating");
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Error");
+        buttonGroup1.add(rderror);
+        rderror.setSelected(true);
+        rderror.setText("Error");
 
         buttonGroup1.add(rdLose);
         rdLose.setText("Lose");
@@ -175,15 +173,15 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
                         .addGap(55, 55, 55)
                         .addGroup(rdErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(txtId)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label1)
+                            .addComponent(txtCardID, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(rdErrorLayout.createSequentialGroup()
                                 .addGroup(rdErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btnUpdate)
                                     .addGroup(rdErrorLayout.createSequentialGroup()
                                         .addComponent(rdOperating)
                                         .addGap(40, 40, 40)
-                                        .addComponent(jRadioButton2)))
+                                        .addComponent(rderror)))
                                 .addGroup(rdErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(rdErrorLayout.createSequentialGroup()
                                         .addGap(43, 43, 43)
@@ -212,15 +210,15 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
             rdErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rdErrorLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(txtId)
+                .addComponent(label1)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCardID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(jLabel2)
                 .addGap(60, 60, 60)
                 .addGroup(rdErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rdOperating)
-                    .addComponent(jRadioButton2)
+                    .addComponent(rderror)
                     .addComponent(rdLose))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -335,155 +333,188 @@ public class CardManagerJDialog extends javax.swing.JDialog implements CardContr
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel label1;
     private javax.swing.JPanel rdError;
     private javax.swing.JRadioButton rdLose;
     private javax.swing.JRadioButton rdOperating;
+    private javax.swing.JRadioButton rderror;
     private javax.swing.JTabbedPane tabs;
     private javax.swing.JTable tblCards;
-    private javax.swing.JLabel txtId;
+    private javax.swing.JTextField txtCardID;
     // End of variables declaration//GEN-END:variables
-  CardDAO dao = new CardDAOImpl();
-    List<Card> items = List.of();
+CardDAO dao = new CardDAOImpl();
+        List<Card> items = List.of();
     @Override
-    public void open() {
+        public void open() {
         this.setLocationRelativeTo(null);
         this.fillToTable();
         this.clear();
+    }
+    @Override
+        public void fillToTable() {
+            DefaultTableModel model = (DefaultTableModel) tblCards.getModel();
+            model.setRowCount(0);
+            items = dao.findAll();
+            items.forEach(item -> {
+                 String statusText;
+        switch (item.getStatus()) {
+            case 0:
+                statusText = "Operating";
+                break;
+            case 1:
+                statusText = "Error";
+                break;
+            case 2:
+                statusText = "Lose";
+                break;
+            default:
+                statusText = "Unknown";
         }
-    
-@Override
-    public void setForm(Card entity) {
-    }
-
-
-        @Override
-
-
-
-    public Card getForm() {
-            return null;
-}
-
-  
-
+            Object[] rowData = {
+            item.getId(),
+            statusText,
+            false
+           };
+            model.addRow(rowData);
+        });
+     }
     @Override
-    public void fillToTable() {
-    DefaultTableModel model = (DefaultTableModel) tblCards.getModel();
-    model.setRowCount(0);
-    items = dao.findAll();
-    items.forEach(item -> {
-    Object[] rowData = {
-    item.getId(),
-    item.getStatus(),
-    false
-    };
-    model.addRow(rowData);
-    });
-    }
-
-    @Override
-    public void edit() {
-        Card entity = items.get(tblCards.getSelectedRow());
-    this.setForm(entity);
-    this.setEditable(true);
-    tabs.setSelectedIndex(1);
-}
-
-    
-
-    @Override
-    public void create() {
-   Card entity = this.getForm();
-    dao.create(entity);
-    this.fillToTable();
-    this.clear();
-    }
-
-    @Override
-    public void update() {
-     Card entity = this.getForm();
-    dao.update(entity);
-    this.fillToTable();
-}
-    @Override
-    public void delete() {
-
-
-    }
-
-    @Override
-    public void clear() {
-    this.setForm(new Card());
-    this.setEditable(false);
-    }
-
-    @Override
-    public void setEditable(boolean editable) {
-    txtId.setEnabled(!editable);
-    btnCreate.setEnabled(!editable);
-    btnUpdate.setEnabled(editable);
-    btnDelete.setEnabled(editable);
-    int rowCount = tblCards.getRowCount();
-    btnMoveFirst.setEnabled(editable && rowCount > 0);
-    btnMovePrevious.setEnabled(editable && rowCount > 0);
-    btnMoveNext.setEnabled(editable && rowCount > 0);
-    btnMoveLast.setEnabled(editable && rowCount> 0);
-    }
-
-    @Override
-    public void checkAll() {
-       this.setCheckedAll(true);
-    }
-
-    @Override
-    public void uncheckAll() {
-        this.setCheckedAll(false);
+        public void edit() {
+            Card entity = items.get(tblCards.getSelectedRow());
+            this.setForm(entity);
+            this.setEditable(true);
+            tabs.setSelectedIndex(1);
         }
-private void setCheckedAll(boolean checked) {
- for (int i = 0; i < tblCards.getRowCount(); i++) {
- tblCards.setValueAt(checked, i, 2);
- }
-    }
-
     @Override
-
+        public void checkAll() {
+            this.setCheckedAll(true);
+        }
+    @Override
+        public void uncheckAll() {
+            this.setCheckedAll(false);
+        }
+        private void setCheckedAll(boolean checked) {
+            for (int i = 0; i < tblCards.getRowCount(); i++) {
+            tblCards.setValueAt(checked, i, 2);
+        }
+    }
+    @Override
     public void deleteCheckedItems() {
- if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
- for (int i = 0; i < tblCards.getRowCount(); i++) {
- if ((Boolean) tblCards.getValueAt(i, 2)) {
- dao.deleteById(items.get(i).getId());
- }
- }
- this.fillToTable();
- }
+        if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
+            for (int i = 0; i < tblCards.getRowCount(); i++) {
+        if ((Boolean) tblCards.getValueAt(i, 2)) {
+            dao.deleteById(items.get(i).getId());
+                }
+            }
+            this.fillToTable();
+        }
+    }
+    @Override
+    public void setForm(Card entity) {
+        Integer id = entity.getId();
+        label1.setText(id != null ? String.valueOf(id) : "");
+
+        int status = entity.getStatus();
+        switch (status) {
+            case 0:
+                rdOperating.setSelected(true);
+                break;
+            case 1:
+                rderror.setSelected(true);
+                break;
+            case 2:
+                rdLose.setSelected(true);
+                break;
+        }
+}
+@Override
+    public Card getForm() {
+        Card entity = new Card();
+
+        String idText = label1.getText().trim();
+        if (!idText.isEmpty()) {
+            entity.setId(Integer.parseInt(idText));
+        }
+
+        if (rdOperating.isSelected()) {
+            entity.setStatus(0);
+        } else if (rderror.isSelected()) {
+            entity.setStatus(1);
+        } else if (rdLose.isSelected()) {
+            entity.setStatus(2);
+        }
+
+        return entity;
     }
 
     @Override
-    public void moveFirst() {
-        this.moveTo(0);
-    }
-
+        public void create() {
+        Card entity = this.getForm();
+            dao.create(entity);
+            this.fillToTable();
+            this.clear();
+        }
+   @Override
+        public void update() {
+            Card entity = this.getForm();
+            dao.update(entity);
+            this.fillToTable();
+        }
     @Override
-    public void movePrevious() {
-         this.moveTo(tblCards.getSelectedRow() - 1);
-    }
-    
-
+        public void delete() {
+            if (XDialog.confirm("Bạn thực sự muốn xóa?")) {
+            Integer id = Integer.valueOf(label1.getText());
+                    dao.deleteById(id);
+                    this.fillToTable();
+                    this.clear();
+                }
+        }
     @Override
-    public void moveNext() {
-       this.moveTo(tblCards.getSelectedRow() + 1);
-    }
-
+        public void clear() {
+            this.setForm(new Card());
+            this.setEditable(false);
+        }
     @Override
-    public void moveLast() {
-       this.moveTo(tblCards.getRowCount() - 1);
-    }
-
+        public void setEditable(boolean editable) {
+            label1.setEnabled(!editable);
+            btnCreate.setEnabled(!editable);
+            btnUpdate.setEnabled(editable);
+            btnDelete.setEnabled(editable);
+            int rowCount = tblCards.getRowCount();
+            btnMoveFirst.setEnabled(editable && rowCount > 0);
+            btnMovePrevious.setEnabled(editable && rowCount > 0);
+            btnMoveNext.setEnabled(editable && rowCount > 0);
+            btnMoveLast.setEnabled(editable && rowCount > 0);
+            }
     @Override
-    public void moveTo(int rowIndex) {}}
+        public void moveFirst() {
+            this.moveTo(0);
+    }
+    @Override
+        public void movePrevious() {
+            this.moveTo(tblCards.getSelectedRow() - 1);
+    }
+    @Override
+        public void moveNext() {
+            this.moveTo(tblCards.getSelectedRow() + 1);
+    }
+    @Override
+        public void moveLast() {
+            this.moveTo(tblCards.getRowCount() - 1);
+    }
+    @Override
+        public void moveTo(int index) {
+            if (index < 0) {
+                this.moveLast();
+            } else if (index >= tblCards.getRowCount()) {
+                this.moveFirst();
+            } else {
+                tblCards.clearSelection();
+                tblCards.setRowSelectionInterval(index, index);
+                this.edit();
+            }
+}
+}

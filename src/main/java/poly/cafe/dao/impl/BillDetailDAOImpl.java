@@ -18,10 +18,14 @@ public class BillDetailDAOImpl implements BillDetailDAO {
     String createSql = "INSERT INTO BillDetails (BillId, DrinkId, UnitPrice, Discount, Quantity) VALUES (?, ?, ?, ?, ?)";
     String updateSql = "UPDATE BillDetails SET BillId = ?, DrinkId = ?, UnitPrice = ?, Discount = ?, Quantity = ? WHERE Id = ?";
     String deleteSql = "DELETE FROM BillDetails WHERE Id = ?";
-    String findAllSql = "SELECT * FROM BillDetails";
-    String findByIdSql = "SELECT * FROM BillDetails WHERE Id = ?";
-    String findByBillIdSql = "SELECT * FROM BillDetails WHERE BillId = ?";
-    String findByDrinkIdSql = "SELECT * FROM BillDetails WHERE DrinkId = ?";
+    String findAllSql = "SELECT bd.*, d.name AS drinkName\n" +"FROM BillDetails bd JOIN Drinks d ON d.Id=bd.DrinkId\"";
+    String findByIdSql = "SELECT bd.*, d.name AS drinkName\n" +
+"FROM BillDetails bd JOIN Drinks d ON d.Id=bd.DrinkId WHERE bd.Id=?";
+    String findByBillIdSql = "SELECT bd.*, d.name AS drinkName\n" +
+"FROM BillDetails bd JOIN Drinks d ON d.Id=bd.DrinkId WHERE bd.BillId=?";
+    String findByDrinkIdSql = "SELECT bd.*, d.name AS drinkName\n" +
+"FROM BillDetails bd JOIN Drinks d ON d.Id=bd.DrinkId WHERE bd.BillId=?";
+
 
     @Override
     public BillDetail create(BillDetail entity) {
@@ -65,5 +69,7 @@ public class BillDetailDAOImpl implements BillDetailDAO {
     @Override
     public List<BillDetail> findByDrinkId(String drinkId) {
         return XQuery.getBeanList(BillDetail.class, findByDrinkIdSql, drinkId);
+        
     }
+
 }

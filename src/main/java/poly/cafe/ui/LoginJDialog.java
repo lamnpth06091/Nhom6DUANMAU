@@ -10,6 +10,8 @@ import poly.cafe.entity.User;
 import poly.cafe.util.XAuth;
 import poly.cafe.util.XDialog;
 
+
+
 /**
  *
  * @author ADMIN
@@ -36,10 +38,10 @@ public class LoginJDialog extends javax.swing.JDialog implements LoginController
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        txtUsername = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        label = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        password = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         btnLogin = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
@@ -52,7 +54,7 @@ public class LoginJDialog extends javax.swing.JDialog implements LoginController
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Đăng nhập");
 
-        txtUsername.setText("Tên dăng nhâp");
+        label.setText("Tên dăng nhâp");
 
         jLabel4.setText("Mật khẩu");
 
@@ -81,15 +83,15 @@ public class LoginJDialog extends javax.swing.JDialog implements LoginController
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(txtUsername))
+                        .addComponent(label))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-                            .addComponent(jTextField1)))
+                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                            .addComponent(txtUsername)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -114,13 +116,13 @@ public class LoginJDialog extends javax.swing.JDialog implements LoginController
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtUsername)
+                        .addComponent(label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
@@ -188,30 +190,32 @@ public class LoginJDialog extends javax.swing.JDialog implements LoginController
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField password;
-    private javax.swing.JLabel txtUsername;
+    private javax.swing.JLabel label;
+    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
     @Override
-public void open() {
- this.setLocationRelativeTo(null);
-}
-    @Override
- 
-public void login() {
- String username = txtUsername.getText();
- UserDAO dao = new UserDAOImpl();
- User user = dao.findById(username);
- if (user == null) {
- XDialog.alert("Sai tên đăng nhập!");
- } else if (!password.equals(user.getPassword())) {
- XDialog.alert("Sai mật khẩu đăng nhập!");
- } else if (!user.isEnabled()) {
- XDialog.alert("Tài khoản của bạn đang tạm dừng!");
- } else {
- XAuth.user = user; // duy trì user đăng nhập
- this.dispose();
- }
+    public void open() {
+        this.setLocationRelativeTo(null);
+    }
 
-}}
+    @Override
+
+    public void login() {
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
+        UserDAO dao = new UserDAOImpl();
+        User user = dao.findById(username);
+        if (user == null) {
+            XDialog.alert("Sai tên đăng nhập!");
+        } else if (!password.equals(user.getPassword())) {
+            XDialog.alert("Sai mật khẩu đăng nhập!");
+        } else if (!user.isEnabled()) {
+            XDialog.alert("Tài khoản của bạn đang tạm dừng!");
+        } else {
+            XAuth.user = user; // duy trì user đăng nhập
+            this.dispose();
+        }
+    }
+}

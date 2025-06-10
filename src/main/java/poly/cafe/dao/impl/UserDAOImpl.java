@@ -1,21 +1,22 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package poly.cafe.dao.impl;
 
 import poly.cafe.dao.UserDAO;
-import java.util.List;
 import poly.cafe.entity.User;
 import poly.cafe.util.XJdbc;
 import poly.cafe.util.XQuery;
 
+import java.util.List;
+
 /**
  *
- * @author ADMIN
+ * @author Admin
  */
 public class UserDAOImpl implements UserDAO{
-     String createSql = "INSERT INTO Users (Username, Password, Enabled, Fullname, Photo, Manager) VALUES (?, ?, ?, ?, ?, ?)";
+    String createSql = "INSERT INTO Users (Username, Password, Enabled, Fullname, Photo, Manager) VALUES (?, ?, ?, ?, ?, ?)";
     String updateSql = "UPDATE Users SET Password = ?, Enabled = ?, Fullname = ?, Photo = ?, Manager = ? WHERE Username = ?";
     String deleteSql = "DELETE FROM Users WHERE Username = ?";
     String findAllSql = "SELECT * FROM Users";

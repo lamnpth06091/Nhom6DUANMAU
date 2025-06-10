@@ -6,6 +6,9 @@ package poly.cafe.dao.impl;
 
 
 
+
+
+import java.util.Date;
 import java.util.List;
 import poly.cafe.dao.BillDAO;
 import poly.cafe.entity.Bill;
@@ -68,6 +71,11 @@ public class BillDAOImpl implements BillDAO {
     public List<Bill> findByCardId(Integer cardId) {
         return XQuery.getBeanList(Bill.class, findByCardIdSql, cardId);
     }
-}
+    
+@Override
+public List<Bill> findByTimeRange(Date begin, Date end) {
+String sql = "SELECT * FROM Bills "
++ " WHERE Checkin BETWEEN ? AND ? ORDER BY Checkin DESC";
+return XQuery.getBeanList(Bill.class, sql, begin, end);}}
     
 

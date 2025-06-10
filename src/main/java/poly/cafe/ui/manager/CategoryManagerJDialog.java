@@ -16,8 +16,10 @@ import poly.cafe.util.XDialog;
  * @author ADMIN
  */
 public class CategoryManagerJDialog extends javax.swing.JDialog implements CategoryController {
-CategoryDAO dao = new CategoryDAOImpl();
-List<Category> items = List.of();
+
+    CategoryDAO dao = new CategoryDAOImpl();
+    List<Category> items = List.of();
+
     /**
      * Creates new form CategoryManagerJDialog
      */
@@ -44,9 +46,9 @@ List<Category> items = List.of();
         btnUncheckAll = new javax.swing.JButton();
         btnDeleteCheckedItems = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        txtId = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        txtName = new javax.swing.JLabel();
+        label = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+        label2 = new javax.swing.JLabel();
         btnCreate = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -56,7 +58,7 @@ List<Category> items = List.of();
         btnMoveNext = new javax.swing.JButton();
         btnMoveLast = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jTextField2 = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -140,9 +142,15 @@ List<Category> items = List.of();
 
         tabs.addTab("Danh sách", jPanel2);
 
-        txtId.setText("mã loại");
+        label.setText("mã loại");
 
-        txtName.setText("Tên loại");
+        txtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdActionPerformed(evt);
+            }
+        });
+
+        label2.setText("Tên loại");
 
         btnCreate.setText("Tạo  mới");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -209,10 +217,10 @@ List<Category> items = List.of();
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtName)
+                            .addComponent(label2)
+                            .addComponent(label)
                             .addComponent(txtId)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)))
+                            .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,13 +247,13 @@ List<Category> items = List.of();
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(txtId)
+                .addComponent(label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(txtName)
+                .addComponent(label2)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -291,14 +299,15 @@ List<Category> items = List.of();
 
     private void tblCategoriesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCategoriesMouseClicked
         // TODO add your handling code here:
-   if( evt.getClickCount() == 2) {
-    this.edit();}
+        if (evt.getClickCount() == 2) {
+            this.edit();
+        }
     }//GEN-LAST:event_tblCategoriesMouseClicked
 
     private void btnCheckAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckAllActionPerformed
         // TODO add your handling code here:
         this.checkAll();
- 
+
     }//GEN-LAST:event_btnCheckAllActionPerformed
 
     private void btnUncheckAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUncheckAllActionPerformed
@@ -313,11 +322,11 @@ List<Category> items = List.of();
     }//GEN-LAST:event_btnDeleteCheckedItemsActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-this.create();    
+        this.create();
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-this.update();        // TODO add your handling code here:
+        this.update();        // TODO add your handling code here:
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -349,6 +358,10 @@ this.update();        // TODO add your handling code here:
         // TODO add your handling code here:
         this.moveLast();
     }//GEN-LAST:event_btnMoveLastActionPerformed
+
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -408,143 +421,161 @@ this.update();        // TODO add your handling code here:
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel label;
+    private javax.swing.JLabel label2;
     private javax.swing.JTabbedPane tabs;
     private javax.swing.JTable tblCategories;
-    private javax.swing.JLabel txtId;
-    private javax.swing.JLabel txtName;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 
-@Override
-public void open() {
- this.setLocationRelativeTo(null);
- this.fillToTable();
- this.clear();
-}
-@Override
-public void fillToTable() {
- DefaultTableModel model = (DefaultTableModel) tblCategories.getModel();
- model.setRowCount(0);
- items = dao.findAll();
- items.forEach(item -> {
- Object[] rowData = {
- item.getId(),
- item.getName(),
- false
- };
- model.addRow(rowData);
- });
-}
-@Override
-public void edit() {
- Category entity = items.get(tblCategories.getSelectedRow());
- this.setForm(entity);
- this.setEditable(true);
- tabs.setSelectedIndex(1);
-}
-@Override
-public void checkAll() {
- this.setCheckedAll(true);
-}
-@Override
-public void uncheckAll() {
- this.setCheckedAll(false);
-}
-private void setCheckedAll(boolean checked) {
- for (int i = 0; i < tblCategories.getRowCount(); i++) {
- tblCategories.setValueAt(checked, i, 2);
- }
-}
-@Override
-public void deleteCheckedItems() {
- if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
- for (int i = 0; i < tblCategories.getRowCount(); i++) {
- if ((Boolean) tblCategories.getValueAt(i, 2)) {
- dao.deleteById(items.get(i).getId());
- }
- }
- this.fillToTable();
- }
-}
-@Override
-public void setForm(Category entity) {
- txtId.setText(entity.getId());
- txtName.setText(entity.getName());
-}
-@Override
-public Category getForm() {
- Category entity = new Category();
- entity.setId(txtId.getText());
- entity.setName(txtName.getText());
- return entity;
-}
-@Override
-public void create() {
- Category entity = this.getForm();
- dao.create(entity);
- this.fillToTable();
- this.clear();
-}
-@Override
-public void update() {
- Category entity = this.getForm();
- dao.update(entity);
- this.fillToTable();
-}
-@Override
-public void delete() {
- if (XDialog.confirm("Bạn thực sự muốn xóa?")) {
- String id = txtId.getText();
- dao.deleteById(id);
- this.fillToTable();
- this.clear();
- }
-}
-@Override
-public void clear() {
- this.setForm(new Category());
- this.setEditable(false);
-}
-@Override
-public void setEditable(boolean editable) {
- txtId.setEnabled(!editable);
- btnCreate.setEnabled(!editable);
- btnUpdate.setEnabled(editable);
- btnDelete.setEnabled(editable);
- int rowCount = tblCategories.getRowCount();
- btnMoveFirst.setEnabled(editable && rowCount > 0);
- btnMovePrevious.setEnabled(editable && rowCount > 0);
- btnMoveNext.setEnabled(editable && rowCount > 0);
- btnMoveLast.setEnabled(editable && rowCount > 0);
-}
-@Override
-public void moveFirst() {
- this.moveTo(0);
-}
-@Override
-public void movePrevious() {
- this.moveTo(tblCategories.getSelectedRow() - 1);
-}
-@Override
-public void moveNext() {
- this.moveTo(tblCategories.getSelectedRow() + 1);
-}
-@Override
-public void moveLast() {
- this.moveTo(tblCategories.getRowCount() - 1);
-}
-@Override
-public void moveTo(int index) {
- if (index < 0) {
- this.moveLast();
- } else if (index >= tblCategories.getRowCount()) {
- this.moveFirst();
- } else {
- tblCategories.clearSelection();
- tblCategories.setRowSelectionInterval(index, index);
- this.edit();
- }
-}
+    @Override
+    public void open() {
+        this.setLocationRelativeTo(null);
+        this.fillToTable();
+        this.clear();
+    }
+
+    @Override
+    public void fillToTable() {
+        DefaultTableModel model = (DefaultTableModel) tblCategories.getModel();
+        model.setRowCount(0);
+        items = dao.findAll();
+        items.forEach(item -> {
+            Object[] rowData = {
+                item.getId(),
+                item.getName(),
+                false
+            };
+            model.addRow(rowData);
+        });
+    }
+
+    @Override
+    public void edit() {
+        Category entity = items.get(tblCategories.getSelectedRow());
+        this.setForm(entity);
+        this.setEditable(true);
+        tabs.setSelectedIndex(1);
+    }
+
+    @Override
+    public void checkAll() {
+        this.setCheckedAll(true);
+    }
+
+    @Override
+    public void uncheckAll() {
+        this.setCheckedAll(false);
+    }
+
+    private void setCheckedAll(boolean checked) {
+        for (int i = 0; i < tblCategories.getRowCount(); i++) {
+            tblCategories.setValueAt(checked, i, 2);
+        }
+    }
+
+    @Override
+    public void deleteCheckedItems() {
+        if (XDialog.confirm("Bạn thực sự muốn xóa các mục chọn?")) {
+            for (int i = 0; i < tblCategories.getRowCount(); i++) {
+                if ((Boolean) tblCategories.getValueAt(i, 2)) {
+                    dao.deleteById(items.get(i).getId());
+                }
+            }
+            this.fillToTable();
+        }
+    }
+
+    @Override
+    public void setForm(Category entity) {
+        txtId.setText(entity.getId());
+        txtName.setText(entity.getName());
+    }
+
+    @Override
+    public Category getForm() {
+        Category entity = new Category();
+        entity.setId(txtId.getText());
+        entity.setName(txtName.getText());
+        return entity;
+    }
+
+    @Override
+    public void create() {
+        Category entity = this.getForm();
+        dao.create(entity);
+        this.fillToTable();
+        this.clear();
+    }
+
+    @Override
+    public void update() {
+        Category entity = this.getForm();
+        dao.update(entity);
+        this.fillToTable();
+    }
+
+    @Override
+    public void delete() {
+        if (XDialog.confirm("Bạn thực sự muốn xóa?")) {
+            String id = label.getText();
+            dao.deleteById(id);
+            this.fillToTable();
+            this.clear();
+        }
+    }
+
+    @Override
+    public void clear() {
+        this.setForm(new Category());
+        this.setEditable(false);
+    }
+
+    @Override
+    public void setEditable(boolean editable) {
+        label.setEnabled(!editable);
+        btnCreate.setEnabled(!editable);
+        btnUpdate.setEnabled(editable);
+        btnDelete.setEnabled(editable);
+        int rowCount = tblCategories.getRowCount();
+        btnMoveFirst.setEnabled(editable && rowCount > 0);
+        btnMovePrevious.setEnabled(editable && rowCount > 0);
+        btnMoveNext.setEnabled(editable && rowCount > 0);
+        btnMoveLast.setEnabled(editable && rowCount > 0);
+    }
+
+    @Override
+    public void moveFirst() {
+        this.moveTo(0);
+    }
+
+    @Override
+    public void movePrevious() {
+        this.moveTo(tblCategories.getSelectedRow() - 1);
+    }
+
+    @Override
+    public void moveNext() {
+        this.moveTo(tblCategories.getSelectedRow() + 1);
+    }
+
+    @Override
+    public void moveLast() {
+        this.moveTo(tblCategories.getRowCount() - 1);
+    }
+
+    @Override
+    public void moveTo(int index) {
+        if (index < 0) {
+            this.moveLast();
+        } else if (index >= tblCategories.getRowCount()) {
+            this.moveFirst();
+        } else {
+            tblCategories.clearSelection();
+            tblCategories.setRowSelectionInterval(index, index);
+            this.edit();
+        }
+    }
 }

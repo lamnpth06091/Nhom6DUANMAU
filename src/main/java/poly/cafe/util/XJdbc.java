@@ -8,7 +8,7 @@ public class XJdbc {
     public static Connection openConnection() {
         try {
             var driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-            var dburl = "jdbc:sqlserver://localhost;database=PolyCafe;encrypt=true;trustServerCertificate=true;";
+            var dburl = "jdbc:sqlserver://localhost:1433;database=PolyCafe;encrypt=true;trustServerCertificate=true;";
             var username = "sa";
             var password = "123"; // Đổi thành pass thật của bạn
 
